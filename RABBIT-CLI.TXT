@@ -1,0 +1,112 @@
+================================================================================
+YOU CAN USE COMMAND LINE TOOLS TO TALK TO RABBIT (works in container too)
+https://www.rabbitmq.com/rabbitmqctl.8.html
+
+$ docker exec rabbit_composed-rabbit_1  rabbitmqctl list_queues
+Timeout: 60.0 seconds ...
+Listing queues for vhost / ...
+name	messages
+test2	0
+test1	0
+test3	3
+================================================================================
+$ docker exec rabbit_composed-rabbit_1  rabbitmqctl list_bindings
+Listing bindings for vhost /...
+source_name	source_kind	destination_name	destination_kind	routing_key	arguments
+	exchange	test2	queue	test2	[]
+	exchange	test1	queue	test1	[]
+	exchange	test3	queue	test3	[]
+================================================================================
+$ docker exec rabbit_composed-rabbit_1  rabbitmqctl list_bindings
+Listing bindings for vhost /...
+source_name	source_kind	destination_name	destination_kind	routing_key	arguments
+	exchange	test2	queue	test2	[]
+	exchange	test1	queue	test1	[]
+	exchange	test3	queue	test3	[]
+================================================================================
+$ docker exec rabbit_composed-rabbit_1  rabbitmqctl list_connections
+Listing connections ...	
+================================================================================
+davidhay@localhost spring-rabbit (master) $ docker exec rabbit_composed-rabbit_1  rabbitmqctl status
+Status of node rabbit@877aa5a4daa7 ...
+[{pid,371},
+ {running_applications,
+     [{rabbitmq_management,"RabbitMQ Management Console","3.7.18"},
+      {rabbitmq_management_agent,"RabbitMQ Management Agent","3.7.18"},
+      {rabbitmq_web_dispatch,"RabbitMQ Web Dispatcher","3.7.18"},
+      {rabbit,"RabbitMQ","3.7.18"},
+      {amqp_client,"RabbitMQ AMQP Client","3.7.18"},
+      {rabbit_common,
+          "Modules shared by rabbitmq-server and rabbitmq-erlang-client",
+          "3.7.18"},
+      {cowboy,"Small, fast, modern HTTP server.","2.6.1"},
+      {ranch,"Socket acceptor pool for TCP protocols.","1.7.1"},
+      {ssl,"Erlang/OTP SSL application","9.4"},
+      {public_key,"Public key infrastructure","1.7"},
+      {asn1,"The Erlang ASN1 compiler version 5.0.9","5.0.9"},
+      {sysmon_handler,"Rate-limiting system_monitor event handler","1.1.0"},
+      {os_mon,"CPO  CXC 138 46","2.5.1"},
+      {cowlib,"Support library for manipulating Web protocols.","2.7.0"},
+      {credentials_obfuscation,
+          "Helper library that obfuscates sensitive values in process state",
+          "1.1.0"},
+      {crypto,"CRYPTO","4.6"},
+      {mnesia,"MNESIA  CXC 138 12","4.16.1"},
+      {tools,"DEVTOOLS  CXC 138 16","3.2.1"},
+      {observer_cli,"Visualize Erlang Nodes On The Command Line","1.5.2"},
+      {stdout_formatter,
+          "Tools to format paragraphs, lists and tables as plain text",
+          "0.2.2"},
+      {xmerl,"XML parser","1.3.22"},
+      {jsx,"a streaming, evented json parsing toolkit","2.9.0"},
+      {recon,"Diagnostic tools for production use","2.5.0"},
+      {inets,"INETS  CXC 138 49","7.1"},
+      {lager,"Erlang logging framework","3.8.0"},
+      {goldrush,"Erlang event stream processor","0.1.9"},
+      {compiler,"ERTS  CXC 138 10","7.4.5"},
+      {syntax_tools,"Syntax tools","2.2.1"},
+      {sasl,"SASL  CXC 138 11","3.4.1"},
+      {stdlib,"ERTS  CXC 138 10","3.10"},
+      {kernel,"ERTS  CXC 138 10","6.5"}]},
+ {os,{unix,linux}},
+ {erlang_version,
+     "Erlang/OTP 22 [erts-10.5] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:64]\n"},
+ {memory,
+     [{connection_readers,0},
+      {connection_writers,0},
+      {connection_channels,0},
+      {connection_other,2732},
+      {queue_procs,68308},
+      {queue_slave_procs,0},
+      {plugins,1159956},
+      {other_proc,20846016},
+      {metrics,213860},
+      {mgmt_db,190304},
+      {mnesia,81632},
+      {other_ets,2727192},
+      {binary,116792},
+      {msg_index,29648},
+      {code,28358577},
+      {atom,1468577},
+      {other_system,24207174},
+      {allocated_unused,19267408},
+      {reserved_unallocated,0},
+      {strategy,rss},
+      {total,[{erlang,79470768},{rss,92880896},{allocated,98738176}]}]},
+ {alarms,[]},
+ {listeners,[{clustering,25672,"::"},{amqp,5672,"::"},{http,15672,"::"}]},
+ {vm_memory_calculation_strategy,rss},
+ {vm_memory_high_watermark,0.4},
+ {vm_memory_limit,838390579},
+ {disk_free_limit,50000000},
+ {disk_free,36964663296},
+ {file_descriptors,
+     [{total_limit,1048476},
+      {total_used,3},
+      {sockets_limit,943626},
+      {sockets_used,0}]},
+ {processes,[{limit,1048576},{used,399}]},
+ {run_queue,1},
+ {uptime,2512},
+ {kernel,{net_ticktime,60}}]
+=====================================================================================

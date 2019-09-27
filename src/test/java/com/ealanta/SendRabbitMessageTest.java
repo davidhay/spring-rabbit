@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SendRabbitMessageTest {
-	
+		
 	@Autowired
 	private RabbitTemplate template;
 
@@ -27,6 +27,7 @@ public class SendRabbitMessageTest {
 		String time = fmt.format(now);
 		MessageProperties props = new MessageProperties();
 		Message message = new Message(time.getBytes(StandardCharsets.UTF_8), props);
-		template.send("test1",message);		
+		
+		template.send(RabbitInfo.QUEUE_TEST_1, message);		
 	}
 }
