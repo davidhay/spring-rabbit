@@ -4,6 +4,7 @@ public class Customer {
 	
 	private String first;
 	private String last;
+	private DateOfBirth dob;
 	
 	public Customer(){
 	}
@@ -30,10 +31,17 @@ public class Customer {
 		this.last = last;
 	}
 
+	public DateOfBirth getDob() {
+		return dob;
+	}
+
+	public void setDob(DateOfBirth dob) {
+		this.dob = dob;
+	}
+
 	@Override
 	public String toString() {
-		return "Customer [first=" + first + ", last=" + last + "]";
+		return "Customer [first=" + first + ", last=" + last + ", dob=" + dob + "]";
 	}
-	
 	
 }

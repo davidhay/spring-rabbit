@@ -1,0 +1,27 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"additionalProperties": false,
+	"definitions": {
+		"DateOfBirthType": {
+			"type":"object",
+			"properties": {
+				"day": {
+					"type": "integer"
+				},
+				"month": {
+					"type": "integer"
+				},
+				"year": {
+					"type": "integer"
+				}
+			},
+			"required": [
+				"day",
+				"month",
+				"year"
+			],
+			"additionalProperties": false
+		}
+	}
+}

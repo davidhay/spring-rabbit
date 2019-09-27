@@ -1,4 +1,5 @@
 RESOURCES
 https://json-schema.org/understanding-json-schema/basics.html
 
-
+PARENT CHILD schema ref
+external file schema ref
