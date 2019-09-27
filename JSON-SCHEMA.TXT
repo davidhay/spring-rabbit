@@ -1,0 +1,4 @@
+RESOURCES
+https://json-schema.org/understanding-json-schema/basics.html
+
+

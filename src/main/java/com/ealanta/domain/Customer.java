@@ -5,6 +5,15 @@ public class Customer {
 	private String first;
 	private String last;
 	
+	public Customer(){
+	}
+	
+	public Customer(String first, String last) {
+		this();
+		this.first = first;
+		this.last = last;
+	}
+
 	public String getFirst() {
 		return first;
 	}
