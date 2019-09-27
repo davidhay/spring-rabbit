@@ -9,6 +9,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+import com.ealanta.domain.Customer;
+
 @Configuration
 public class RabbitQueueSubscribers {
 
@@ -34,6 +36,12 @@ public class RabbitQueueSubscribers {
 		info.put("length", String.valueOf(props.getContentLength()));
 		
 		System.out.printf("RECVD %s", StringUtils.join(info));
+	}
+
+	
+	@RabbitListener(queues = RabbitInfo.QUEUE_CUSTOMERS)
+	public void receiveCustomer(Customer customer) {
+		System.out.printf("RECVD [%s]", customer);
 	}
 
 }

@@ -1,0 +1,39 @@
+can now send Object to Q & recv Object from Q : in both cases - Conversion is automatic.
+
+This is what a simple object looks like on the queue.
+NOTE : __TypeId__ header
+NOTE : ENCODING
+NOTE : content_type: application/json
+==========================================
+Exchange	(AMQP default)
+Routing Key	customers
+Redelivered	○
+Properties	
+priority:	0
+delivery_mode:	2
+headers:	
+__TypeId__:	com.ealanta.domain.Customer
+content_encoding:	UTF-8
+content_type:	application/json
+Payload
+32 bytes
+Encoding: string
+{"first":"david","last":"david"}
+============================================
+MAPPING
+	add jackson mapping dependencies to POM
+	created Customer domain object with first and last name.
+SPRING
+	@Bean
+    public Jackson2JsonMessageConverter jsonMessageConverter(){
+        return new Jackson2JsonMessageConverter();
+    }
+SENDING
+	rabbitTemplate.convertAndSend(queueName, customer);
+
+RECVING
+	@RabbitListener(queues = RabbitInfo.QUEUE_CUSTOMERS)
+	public void receiveCustomer(Customer customer) {
+		System.out.printf("RECVD [%s]", customer);
+	}		
+============================================

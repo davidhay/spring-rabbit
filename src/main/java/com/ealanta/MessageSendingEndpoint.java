@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ealanta.domain.Customer;
+
 @RestController
 public class MessageSendingEndpoint {
 
@@ -45,10 +47,30 @@ public class MessageSendingEndpoint {
 		return result;
 	}
 	
+	@RequestMapping(value = {"sendCustomer/{first}/{last}","sendCustomer"}, 
+			produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> sendSimple(
+			@PathVariable("first") Optional<String> optFirst,
+			@PathVariable("last")Optional<String>  optLast) {
+		
+		String first = optFirst.orElseGet(() -> "f"+UUID.randomUUID().toString());
+		String last = optLast.orElseGet(() -> "l"+UUID.randomUUID().toString());
+		
+		Customer customer = new Customer();
+		customer.setFirst(first);
+		customer.setLast(last);
+		
+		String qName = RabbitInfo.QUEUE_CUSTOMERS;
+		final ResponseEntity<String> result;
+			sender.sendCustomer(qName, customer);
+			result = ResponseEntity.accepted().body(
+					String.format("Sent Message[%s] to q[%s]", customer, qName));
+		return result;
+	}
+
 	public String getNow() {
 		DateTimeFormatter fmt = DateTimeFormatter.ISO_DATE_TIME;
 		String result = fmt.format(LocalDateTime.now().atZone(ZoneId.of("Europe/London")));
 		return result;
 	}
-
 }

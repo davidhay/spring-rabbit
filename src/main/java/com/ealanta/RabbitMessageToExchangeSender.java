@@ -8,6 +8,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ealanta.domain.Customer;
+
 @Component
 public class RabbitMessageToExchangeSender {
 
@@ -21,6 +23,14 @@ public class RabbitMessageToExchangeSender {
 		try {
 			final Message msg = msgUtils.getSimpleMessage(message,correlationId);
 			rabbitTemplate.send(routingKeyAsQueueName, msg);
+		} catch (AmqpException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void sendCustomer(String queueName, Customer customer) {
+		try {
+			rabbitTemplate.convertAndSend(queueName, customer);
 		} catch (AmqpException ex) {
 			ex.printStackTrace();
 		}
