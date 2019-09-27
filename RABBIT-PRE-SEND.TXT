@@ -1,0 +1,33 @@
+We can intercept all outbound messages to perform some global post processing.
+
+For example - we can ensure each message has an 'applicationName' header of the microservice which sent it.
+
+RabbitConfig:
+    @PostConstruct
+    public void init() {
+    	log.info("CALLING POST CONSTRUCT ON CONFIGURATION");
+        this.rabbitTemplate.setBeforePublishPostProcessors(outboundPostProcessor());
+    }
+    
+    /**
+     * NOTE : the post processing is AFTER Conversion to JSON
+     */
+    @Bean
+    public MessagePostProcessor outboundPostProcessor() {
+        return message -> {
+        	String body = msgUtils.extractContent(message);
+        	log.info("outbound post processing [{}]", body);
+        	msgUtils.setApplicationName(message, applicationName);
+        	return message;
+        };
+    }
+   
+MessageUtils:
+	public void setApplicationName(Message message, String applicationName) {
+		message.getMessageProperties().getHeaders().put(HDR_APPLICATION_NAME, applicationName);
+	}
+	
+	public String getApplicationName(Message message) {
+		Object applicationName =  message.getMessageProperties().getHeaders().get(HDR_APPLICATION_NAME);
+		return String.valueOf(applicationName);
+	}

@@ -1,4 +1,4 @@
-package com.ealanta;
+package com.ealanta.rabbit;
 
 import java.util.Optional;
 

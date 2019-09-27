@@ -1,7 +1,8 @@
-package com.ealanta;
+package com.ealanta.config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageProperties;
@@ -10,12 +11,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import com.ealanta.domain.Customer;
+import com.ealanta.rabbit.MessageUtils;
+import com.ealanta.rabbit.RabbitInfo;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
-public class RabbitQueueSubscribers {
+@Slf4j
+public class RabbitListenersConfig {
 
 	@Autowired
 	private MessageUtils msgUtils;
+	
+	@RabbitListener(queues = RabbitInfo.QUEUE_CUSTOMERS)
+	public void receiveCustomer(Customer customer, Message msg) {
+		log.info("RECVD [{}] from[{}]", customer, msgUtils.getApplicationName(msg));
+	}
 	
 	@RabbitListener(queues = {RabbitInfo.QUEUE_TEST_1, RabbitInfo.QUEUE_TEST_2})
 	public void receiveMessage1(Message message) {
@@ -35,13 +46,6 @@ public class RabbitQueueSubscribers {
 		info.put("contentType", props.getContentType());
 		info.put("length", String.valueOf(props.getContentLength()));
 		
-		System.out.printf("RECVD %s", StringUtils.join(info));
+		log.info("RECVD {}", StringUtils.join(info));
 	}
-
-	
-	@RabbitListener(queues = RabbitInfo.QUEUE_CUSTOMERS)
-	public void receiveCustomer(Customer customer) {
-		System.out.printf("RECVD [%s]", customer);
-	}
-
 }

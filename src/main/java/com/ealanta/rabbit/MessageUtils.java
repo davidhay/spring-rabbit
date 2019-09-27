@@ -1,4 +1,4 @@
-package com.ealanta;
+package com.ealanta.rabbit;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageUtils {
+	
+	public static final String HDR_APPLICATION_NAME = "applicationName";
 	
 	public Message getSimpleMessage(String message, Optional<String> correlationid) {
 		byte[] data = message.getBytes(StandardCharsets.UTF_8);		
@@ -25,5 +27,13 @@ public class MessageUtils {
 	public String extractContent(Message message) {
 		return new String(message.getBody(),StandardCharsets.UTF_8);
 	}
-
+	
+	public void setApplicationName(Message message, String applicationName) {
+		message.getMessageProperties().getHeaders().put(HDR_APPLICATION_NAME, applicationName);
+	}
+	
+	public String getApplicationName(Message message) {
+		Object applicationName =  message.getMessageProperties().getHeaders().get(HDR_APPLICATION_NAME);
+		return String.valueOf(applicationName);
+	}
 }

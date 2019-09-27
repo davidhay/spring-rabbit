@@ -1,13 +1,13 @@
-package com.ealanta;
+package com.ealanta.config;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+
+import com.ealanta.rabbit.RabbitInfo;
 
 
 /**
@@ -16,12 +16,12 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class QueueConfig {
+public class RabbitQueueConfig {
 
     private AmqpAdmin amqpAdmin;
 
     @Autowired
-    public QueueConfig(AmqpAdmin amqpAdmin) {
+    public RabbitQueueConfig(AmqpAdmin amqpAdmin) {
         this.amqpAdmin = amqpAdmin;
     }
 
@@ -33,8 +33,4 @@ public class QueueConfig {
         amqpAdmin.declareQueue(new Queue(RabbitInfo.QUEUE_CUSTOMERS, true));
     }
     
-    @Bean
-    public Jackson2JsonMessageConverter jsonMessageConverter(){
-        return new Jackson2JsonMessageConverter();
-    }
 }

@@ -1,20 +1,25 @@
-package com.ealanta;
+package com.ealanta.rabbit;
 
 import java.util.Properties;
 
 import org.springframework.amqp.core.AmqpAdmin;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
-@Component
-public class QueueChecker {
+import com.ealanta.rabbit.RabbitInfo;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class QueueMonitor {
 
 	public static final long TWENTY_SECONDS = 20_000;
 
-	@Autowired
-	public AmqpAdmin rabbitAdmin;
+	private AmqpAdmin rabbitAdmin;
 
+	public QueueMonitor(AmqpAdmin rabbitAdmin){
+		this.rabbitAdmin = rabbitAdmin;		
+	}
+	
 	@Scheduled(fixedDelay = TWENTY_SECONDS)
 	public void checkQueuesExist() {
 		checkQueue(RabbitInfo.QUEUE_TEST_1);
@@ -25,16 +30,16 @@ public class QueueChecker {
 	private void checkQueue(String name) {
 		boolean exists = doesQueueExist(name);
 		if(exists) {
-			System.out.printf("The queue[%s] exists :-)%n", name);
+			log.info("The queue[{}] exists :-)", name);
 		} else {
-			System.out.printf("The queue[%s] does NOT exist :-(%n", name);
+			log.info("The queue[{}] does NOT exist :-(", name);
 		}
 	}
 	
 	private boolean doesQueueExist(String queueName) {
 		try {
 			Properties props = rabbitAdmin.getQueueProperties(queueName);
-			System.out.printf("properties for [%s] [%s]%n", queueName, props);
+			log.info("properties for [{}] [{}]", queueName, props);
 			return props != null;
 		} catch (RuntimeException ex) {
 			ex.printStackTrace();

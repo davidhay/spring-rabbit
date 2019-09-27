@@ -1,4 +1,4 @@
-package com.ealanta;
+package com.ealanta.rest;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ealanta.domain.Customer;
+import com.ealanta.rabbit.RabbitInfo;
+import com.ealanta.rabbit.RabbitMessageToExchangeSender;
 
 @RestController
 public class MessageSendingEndpoint {
@@ -21,7 +23,9 @@ public class MessageSendingEndpoint {
 	@Autowired
 	private RabbitMessageToExchangeSender sender;
 
-	@RequestMapping(value = {"sendSimple/{queueName}/{message}","sendSimple/{queueName}"}, 
+	@RequestMapping(value = {
+			"sendSimple/{queueName}/{message}",
+			"sendSimple/{queueName}"}, 
 			produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> sendSimple(
 			@PathVariable("queueName") String queueName,
@@ -47,7 +51,9 @@ public class MessageSendingEndpoint {
 		return result;
 	}
 	
-	@RequestMapping(value = {"sendCustomer/{first}/{last}","sendCustomer"}, 
+	@RequestMapping(value = {
+			"sendCustomer/{first}/{last}",
+			"sendCustomer"}, 
 			produces = MediaType.TEXT_PLAIN_VALUE)
 	public ResponseEntity<String> sendSimple(
 			@PathVariable("first") Optional<String> optFirst,
