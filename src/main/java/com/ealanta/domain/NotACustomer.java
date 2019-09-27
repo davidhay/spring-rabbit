@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class NotACustomer {
 	private String first;
-	private String last;
-}	
+	private String surname;
+}

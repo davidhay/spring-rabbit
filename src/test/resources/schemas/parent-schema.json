@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"definitions": {
+		"ParentType": {
+			"type": "object",
+			"additionalProperties": true,
+			"properties": {
+				"parent1": {
+					"type": "string"
+				},
+				"parent2": {
+					"type": "string"
+				}
+			},
+            "required":["parent1","parent2"]
+		}
+	},
+	"allOf": [
+		{ "$ref" : "#/definitions/ParentType" },
+		{ "$ref" : "child-schema.json#/definitions/ChildType" }
+	],
+	"additionalProperties": true
+}

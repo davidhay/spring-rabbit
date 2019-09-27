@@ -1,0 +1,18 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"definitions": {
+        "ChildType": {
+			"type": "object",
+			"additionalProperties": true,
+			"properties": {
+				"child1": {
+					"type": "string"
+				},
+				"child2": {
+					"type": "string"
+				}
+			},
+            "required":["child1","child2"]
+		}
+	}
+}

@@ -1,16 +1,13 @@
-ONE POSSIBILITY
+JSON SCHEMA VALIDATOR
 https://github.com/everit-org/json-schema
+1) you can use $ref to external file
+2) not great error messages
 
-OR WITH JACKSON
-https://github.com/java-json-tools/json-schema-validator
+OR this one [Doesn't handle $ref to external file well]
+1) better error messages
+2) could not get $ref to external file to work.
 
-OR this one
 https://github.com/java-json-tools/json-schema-validator
-<dependency>
-    <groupId>com.github.java-json-tools</groupId>
-    <artifactId>json-schema-validator</artifactId>
-    <version>2.2.11</version>
-</dependency>
 
 WHEN DO WE VALIDATE?
 AT SEND, RECV, BOTH?

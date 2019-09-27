@@ -1,0 +1,37 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"definitions": {
+		"LocalType1": {
+			"type": "object",
+			"additionalProperties": true,
+			"properties": {
+				"parent1": {
+					"type": "string"
+				},
+				"parent2": {
+					"type": "string"
+				}
+			},
+            "required":["parent1","parent2"]
+		},
+        "LocalType2": {
+			"type": "object",
+			"additionalProperties": true,
+			"properties": {
+				"parent3": {
+					"type": "string"
+				},
+				"parent4": {
+					"type": "string"
+				}
+			},
+            "required":["parent3","parent4"]
+		}
+
+	},
+	"allOf": [
+		{ "$ref" : "#/definitions/LocalType1" },
+		{ "$ref" : "#/definitions/LocalType2" }
+	],
+	"additionalProperties": true
+}

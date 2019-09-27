@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.core.Message;
@@ -17,6 +18,7 @@ import com.ealanta.rabbit.RabbitInfo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Ignore
 public class SendRabbitMessageTest {
 		
 	@Autowired
