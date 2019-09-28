@@ -1,5 +1,5 @@
 
-package com.ealanta.generated;
+package com.ealanta.generated.cli;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

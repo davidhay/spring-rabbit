@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ealanta</groupId>
-	<artifactId>simplespring-3</artifactId>
+	<artifactId>spring-rabbit</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>simplespring-3</name>
-	<description>Simple Spring 2</description>
+	<name>spring-rabbit</name>
+	<description>A project for Rabbit/Spring/Json Schema experiments</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -105,6 +105,26 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/test/resources/schema</sourceDirectory>
+                    <targetPackage>com.ealanta.generated.mvn</targetPackage>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                            <!-- 
+                            This places the generated java files in 
+                            target/generated-sources/jsonschema2pojo/com/ealanta/generated/mvn
+                             -->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 

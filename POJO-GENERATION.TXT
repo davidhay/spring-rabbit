@@ -3,6 +3,8 @@ http://www.jsonschema2pojo.org/
 
 https://github.com/joelittlejohn/jsonschema2pojo/wiki/Getting-Started#the-maven-plugin
 
+CommandLine CLI
+===============
 davidhay@localhost spring-rabbit (json-schema-validation) $ type jsonschema2pojo
 jsonschema2pojo is hashed (/usr/local/bin/jsonschema2pojo)
 
@@ -11,6 +13,15 @@ davidhay@localhost spring-rabbit (json-schema-validation) $ brew ls jsonschema2p
 /usr/local/Cellar/jsonschema2pojo/1.0.1/libexec/lib/ (23 files)
 /usr/local/Cellar/jsonschema2pojo/1.0.1/libexec/jsonschema2pojo-1.0.1-javadoc.jar
 
-@see generateAddressPojoFromSchema
-@see 
+@see generateAddressPojoFromSchema.sh
+Schema    :src/test/resources/schema/address-schema.json
+Generated :src/test/java/com/ealanta/generated/cli/AddressSchema.java
+
+Maven Plugin
+============
+mvn clean compile
+Schema    :src/test/resources/schema/address-schema.json
+Generated :target/generated-sources/jsonschema2pojo/com/ealanta/generated/mvn/AddressSchema.java
+
+
 

@@ -1,4 +1,4 @@
-jsonschema2pojo --source src/test/resources/schemas/address-schema.json \
+jsonschema2pojo --source src/test/resources/schema/address-schema.json \
   --target src/test/java \
-  --package 'com.ealanta.generated'
+  --package 'com.ealanta.generated.cli'
  
