@@ -1,0 +1,16 @@
+JSON SCHEMA - TO JAVA CLASS
+http://www.jsonschema2pojo.org/
+
+https://github.com/joelittlejohn/jsonschema2pojo/wiki/Getting-Started#the-maven-plugin
+
+davidhay@localhost spring-rabbit (json-schema-validation) $ type jsonschema2pojo
+jsonschema2pojo is hashed (/usr/local/bin/jsonschema2pojo)
+
+davidhay@localhost spring-rabbit (json-schema-validation) $ brew ls jsonschema2pojo
+/usr/local/Cellar/jsonschema2pojo/1.0.1/bin/jsonschema2pojo
+/usr/local/Cellar/jsonschema2pojo/1.0.1/libexec/lib/ (23 files)
+/usr/local/Cellar/jsonschema2pojo/1.0.1/libexec/jsonschema2pojo-1.0.1-javadoc.jar
+
+@see generateAddressPojoFromSchema
+@see 
+
