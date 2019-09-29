@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ealanta.domain.Customer;
 import com.ealanta.rabbit.RabbitInfo;
-import com.ealanta.rabbit.RabbitMessageToExchangeSender;
+import com.ealanta.rabbit.RabbitMessageToDirectExchangeSender;
 
 @RestController
-public class MessageSendingEndpoint {
+public class DirectMessageSendingEndpoint {
 
 	@Autowired
-	private RabbitMessageToExchangeSender sender;
+	private RabbitMessageToDirectExchangeSender sender;
 
 	@RequestMapping(value = {
 			"sendSimple/{queueName}/{message}",
@@ -74,7 +74,7 @@ public class MessageSendingEndpoint {
 		return result;
 	}
 
-	public String getNow() {
+	private String getNow() {
 		DateTimeFormatter fmt = DateTimeFormatter.ISO_DATE_TIME;
 		String result = fmt.format(LocalDateTime.now().atZone(ZoneId.of("Europe/London")));
 		return result;

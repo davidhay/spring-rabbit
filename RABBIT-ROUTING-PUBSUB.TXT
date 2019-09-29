@@ -1,0 +1,33 @@
+QUEUES(4)
+=========
+	Queue 'type1queue1'
+	Queue 'type1queue2'
+	Queue 'type2queue1'
+	Queue 'type2queue2'
+
+EXCHANGES(3)
+============
+	EXCHANGE FANOUT 'type1.ex'
+	EXCHANGE FANOUT 'type2.ex'
+	EXCHANGE TOPIC  'main'
+
+BINDINGS(6)
+===========
+	Queue bindings (4) - each of the 2 fanout exchanges bound to 2 queues.
+	BindingBuilder.bind(type1queue1).to('type1.ex');
+	BindingBuilder.bind(type1queue2).to('type1.ex');
+	BindingBuilder.bind(type2queue1).to('type2.ex');
+	BindingBuilder.bind(type2queue2).to('type2.ex');
+
+	Exchange Bindings(2) - for 'type1' and 'type2'
+	BindingBuilder.bind('type1.ex').to('main').with('type1');
+	BindingBuilder.bind('type2.ex').to('main').with('type2');
+
+===
+curl http://localhost:8080/sendPubSub/type1/msgA-type1
+c.e.config.RabbitListenersPubSubConfig   : PubSub:Recvd {msg=msgA-type1, type=type1, routingKey=type1, consumerQueue=type1queue2}
+c.e.config.RabbitListenersPubSubConfig   : PubSub:Recvd {msg=msgA-type1, type=type1, routingKey=type1, consumerQueue=type1queue1}
+
+curl http://localhost:8080/sendPubSub/type2/msgB-type2
+c.e.config.RabbitListenersPubSubConfig   : PubSub:Recvd {msg=msgB-type2, type=type2, routingKey=type2, consumerQueue=type2queue1}
+c.e.config.RabbitListenersPubSubConfig   : PubSub:Recvd {msg=msgB-type2, type=type2, routingKey=type2, consumerQueue=type2queue2}

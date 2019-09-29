@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.ealanta.domain.Customer;
 
 @Component
-public class RabbitMessageToExchangeSender {
+public class RabbitMessageToDirectExchangeSender {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
