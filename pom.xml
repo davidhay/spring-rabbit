@@ -52,6 +52,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 		<dependency>
@@ -91,6 +95,16 @@
 			<artifactId>org.everit.json.schema</artifactId>
 			<version>1.12.0</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.17.Final</version>
+		</dependency>
+
 	</dependencies>
 
 	<repositories>
@@ -105,26 +119,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-            <plugin>
-                <groupId>org.jsonschema2pojo</groupId>
-                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                <version>1.0.1</version>
-                <configuration>
-                    <sourceDirectory>${basedir}/src/test/resources/schema</sourceDirectory>
-                    <targetPackage>com.ealanta.generated.mvn</targetPackage>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                            <!-- 
-                            This places the generated java files in 
-                            target/generated-sources/jsonschema2pojo/com/ealanta/generated/mvn
-                             -->
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+			<plugin>
+				<groupId>org.jsonschema2pojo</groupId>
+				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<configuration>
+					<sourceDirectory>${basedir}/src/test/resources/schema</sourceDirectory>
+					<targetPackage>com.ealanta.generated.mvn</targetPackage>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+							<!-- This places the generated java files in target/generated-sources/jsonschema2pojo/com/ealanta/generated/mvn -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 

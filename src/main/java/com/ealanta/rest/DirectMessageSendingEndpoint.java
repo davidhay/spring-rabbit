@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ealanta.domain.Constrained;
 import com.ealanta.domain.Customer;
 import com.ealanta.rabbit.RabbitInfo;
 import com.ealanta.rabbit.RabbitMessageToDirectExchangeSender;
@@ -71,6 +72,26 @@ public class DirectMessageSendingEndpoint {
 			sender.sendCustomer(qName, customer);
 			result = ResponseEntity.accepted().body(
 					String.format("Sent Message[%s] to q[%s]", customer, qName));
+		return result;
+	}
+
+	@RequestMapping(value = {
+			"sendConstrained/{age}/{nino}" }, 
+			produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> sendConstrained(
+			@PathVariable("age") int age,
+			@PathVariable("nino")  String  nino) {
+		
+
+		Constrained constrained = new Constrained();
+		constrained.setAge(age);
+		constrained.setNino(nino);
+		
+		String qName = RabbitInfo.QUEUE_VALIDATED;
+		final ResponseEntity<String> result;
+			sender.sendConstrained(qName, constrained);
+			result = ResponseEntity.accepted().body(
+					String.format("Sent Message[%s] to q[%s]", constrained, qName));
 		return result;
 	}
 

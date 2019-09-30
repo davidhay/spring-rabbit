@@ -14,6 +14,7 @@ public class RabbitInfo {
 	public static final String QUEUE_TEST_2 = "test2";
 	public static final String QUEUE_TEST_3 = "test3";
 	public static final String QUEUE_CUSTOMERS = "customers";
+	public static final String QUEUE_VALIDATED = "validated";
 	
 	public static final String QUEUE_PUBSUB_TYPE1Q1 = "type1queue1";
 	public static final String QUEUE_PUBSUB_TYPE1Q2 = "type1queue2";
@@ -24,7 +25,7 @@ public class RabbitInfo {
 	public static final String QUEUE_PUBSUB_ALL = "#";
 	
 	public static final List<String> QUEUE_NAMES = Arrays.asList(
-			QUEUE_TEST_1, QUEUE_TEST_2, QUEUE_TEST_3, QUEUE_CUSTOMERS,
+			QUEUE_TEST_1, QUEUE_TEST_2, QUEUE_TEST_3, QUEUE_CUSTOMERS, QUEUE_VALIDATED,
 			QUEUE_PUBSUB_TYPE1Q1,
 			QUEUE_PUBSUB_TYPE1Q2,
 			QUEUE_PUBSUB_TYPE1Q3,

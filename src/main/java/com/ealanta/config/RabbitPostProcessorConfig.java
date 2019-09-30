@@ -5,7 +5,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -19,16 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j
-public class RabbitConfig {
+public class RabbitPostProcessorConfig {
     
 	@Value("${application.name}")
 	private String applicationName;
-	
-	@Bean
-    public Jackson2JsonMessageConverter jsonMessageConverter(){
-        return new Jackson2JsonMessageConverter();
-    }
-    
+	    
     @Bean
     @ConditionalOnProperty(
     	    value="queue.monitor.enabled", 
@@ -65,6 +59,7 @@ public class RabbitConfig {
         };
     }
     
+    
     /**
      * NOTE : the post processing is BEFORE Conversion from JSON
      */
@@ -76,4 +71,5 @@ public class RabbitConfig {
         	return message;
         };
     }
+
 }

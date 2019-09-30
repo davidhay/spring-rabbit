@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ealanta.domain.Constrained;
 import com.ealanta.domain.Customer;
 
 @Component
@@ -31,6 +32,14 @@ public class RabbitMessageToDirectExchangeSender {
 	public void sendCustomer(String queueName, Customer customer) {
 		try {
 			rabbitTemplate.convertAndSend(queueName, customer);
+		} catch (AmqpException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void sendConstrained(String queueName, Constrained constrained) {
+		try {
+			rabbitTemplate.convertAndSend(queueName, constrained);
 		} catch (AmqpException ex) {
 			ex.printStackTrace();
 		}

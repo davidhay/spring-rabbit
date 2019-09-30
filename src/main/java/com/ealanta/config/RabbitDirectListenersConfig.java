@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Configuration
 @Slf4j
-public class RabbitListenersConfig {
+public class RabbitDirectListenersConfig {
 
 	@Autowired
 	private MessageUtils msgUtils;
