@@ -9,6 +9,7 @@ import static com.ealanta.rabbit.RabbitInfo.QUEUE_CUSTOMERS;
 import static com.ealanta.rabbit.RabbitInfo.QUEUE_TEST_1;
 import static com.ealanta.rabbit.RabbitInfo.QUEUE_TEST_2;
 import static com.ealanta.rabbit.RabbitInfo.QUEUE_TEST_3;
+import static com.ealanta.rabbit.RabbitInfo.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +58,7 @@ public class RabbitQueuesExchangesAndBindingsConfig {
 		
 		queueNamesPerMessageType.put(PUB_SUB_TYPE1_ROUTING_KEY, PUBSUB_TYPE1_QUEUE_NAMES);
 		queueNamesPerMessageType.put(PUB_SUB_TYPE2_ROUTING_KEY, PUBSUB_TYPE2_QUEUE_NAMES);
+		queueNamesPerMessageType.put(PUB_SUB_ALL_ROUTING_KEY, PUBSUB_ALL_QUEUE_NAMES);
 		
 		createPubSubQueues(PUB_SUB_MAIN_EX, queueNamesPerMessageType);
 	}

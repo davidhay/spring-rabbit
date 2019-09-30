@@ -43,6 +43,10 @@ public class RabbitListenersPubSubConfig {
 	public void receiveType2Queue2(Message message) {
 		recvdPubSubMessage("type2",message);
 	}
+	@RabbitListener(queues = {RabbitInfo.QUEUE_PUBSUB_ALL})
+	public void receiveAllQueue(Message message) {
+		recvdPubSubMessage("ALL",message);
+	}
 		
 	private void recvdPubSubMessage(String type,Message message){
 		String msgContent = msgUtils.extractContent(message);
