@@ -6,8 +6,6 @@ import java.util.Arrays;
 public class RabbitInfo {
 
 	public static final String PUB_SUB_MAIN_EX = "main";
-	public static final String PUB_SUB_TYPE1_EX = "type1.ex";
-	public static final String PUB_SUB_TYPE2_EX = "type2.ex";
 	public static final String PUB_SUB_TYPE1_ROUTING_KEY = "type1";
 	public static final String PUB_SUB_TYPE2_ROUTING_KEY = "type2";
 	
@@ -32,6 +30,9 @@ public class RabbitInfo {
 			QUEUE_PUBSUB_TYPE2Q1,
 			QUEUE_PUBSUB_TYPE2Q2
 			);
+	
+	public static final List<String> PUBSUB_TYPE1_QUEUE_NAMES = Arrays.asList(QUEUE_PUBSUB_TYPE1Q1, QUEUE_PUBSUB_TYPE1Q2, QUEUE_PUBSUB_TYPE1Q3);
+	public static final List<String> PUBSUB_TYPE2_QUEUE_NAMES = Arrays.asList(QUEUE_PUBSUB_TYPE2Q1, QUEUE_PUBSUB_TYPE2Q2);
 	
 	public static boolean isValidQueueName(String name) {
 		return QUEUE_NAMES.contains(name);
