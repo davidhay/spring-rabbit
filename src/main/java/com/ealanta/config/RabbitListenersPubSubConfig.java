@@ -30,7 +30,11 @@ public class RabbitListenersPubSubConfig {
 	@RabbitListener(queues = {RabbitInfo.QUEUE_PUBSUB_TYPE1Q2})
 	public void receiveType1Queue2(Message message) {
 		recvdPubSubMessage("type1",message);
-	}
+	}	
+	@RabbitListener(queues = {RabbitInfo.QUEUE_PUBSUB_TYPE1Q3})
+	public void receiveType1Queue3(Message message) {
+		recvdPubSubMessage("type1",message);
+	}	
 	@RabbitListener(queues = {RabbitInfo.QUEUE_PUBSUB_TYPE2Q1})
 	public void receiveType2Queue1(Message message) {
 		recvdPubSubMessage("type2",message);

@@ -18,12 +18,17 @@ public class RabbitInfo {
 	
 	public static final String QUEUE_PUBSUB_TYPE1Q1 = "type1queue1";
 	public static final String QUEUE_PUBSUB_TYPE1Q2 = "type1queue2";
+	public static final String QUEUE_PUBSUB_TYPE1Q3 = "type1queue3";
+
 	public static final String QUEUE_PUBSUB_TYPE2Q1 = "type2queue1";
 	public static final String QUEUE_PUBSUB_TYPE2Q2 = "type2queue2";
+	
 	public static final List<String> QUEUE_NAMES = Arrays.asList(
 			QUEUE_TEST_1, QUEUE_TEST_2, QUEUE_TEST_3, QUEUE_CUSTOMERS,
 			QUEUE_PUBSUB_TYPE1Q1,
 			QUEUE_PUBSUB_TYPE1Q2,
+			QUEUE_PUBSUB_TYPE1Q3,
+			
 			QUEUE_PUBSUB_TYPE2Q1,
 			QUEUE_PUBSUB_TYPE2Q2
 			);

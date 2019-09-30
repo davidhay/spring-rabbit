@@ -7,7 +7,6 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
-import org.springframework.amqp.core.FanoutExchange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +38,7 @@ public class RabbitQueuesExchangesAndBindingsConfig {
 
 		Queue queuePubSubT1Q1 = new Queue(RabbitInfo.QUEUE_PUBSUB_TYPE1Q1, true);
 		Queue queuePubSubT1Q2 = new Queue(RabbitInfo.QUEUE_PUBSUB_TYPE1Q2, true);
+		Queue queuePubSubT1Q3 = new Queue(RabbitInfo.QUEUE_PUBSUB_TYPE1Q3, true);
 		Queue queuePubSubT2Q1 = new Queue(RabbitInfo.QUEUE_PUBSUB_TYPE2Q1, true);
 		Queue queuePubSubT2Q2 = new Queue(RabbitInfo.QUEUE_PUBSUB_TYPE2Q2, true);
 
@@ -48,6 +48,7 @@ public class RabbitQueuesExchangesAndBindingsConfig {
 		amqpAdmin.declareQueue(queueCustomer);
 		amqpAdmin.declareQueue(queuePubSubT1Q1);
 		amqpAdmin.declareQueue(queuePubSubT1Q2);
+		amqpAdmin.declareQueue(queuePubSubT1Q3);
 		amqpAdmin.declareQueue(queuePubSubT2Q1);
 		amqpAdmin.declareQueue(queuePubSubT2Q2);
 
@@ -55,33 +56,34 @@ public class RabbitQueuesExchangesAndBindingsConfig {
 		boolean autoDelete = false;
 
 		TopicExchange mainPubSubEx = new TopicExchange(RabbitInfo.PUB_SUB_MAIN_EX, durable, autoDelete);
-		FanoutExchange fanPubSubType1Ex = new FanoutExchange(RabbitInfo.PUB_SUB_TYPE1_EX, durable, autoDelete);
-		FanoutExchange fanPubSubType2Ex = new FanoutExchange(RabbitInfo.PUB_SUB_TYPE2_EX, durable, autoDelete);
 
 		amqpAdmin.declareExchange(mainPubSubEx);
-		amqpAdmin.declareExchange(fanPubSubType1Ex);
-		amqpAdmin.declareExchange(fanPubSubType2Ex);
 
-		Binding bindingT1Q1toType1Ex = BindingBuilder.bind(queuePubSubT1Q1).to(fanPubSubType1Ex);
-		Binding bindingT1Q2toType1Ex = BindingBuilder.bind(queuePubSubT1Q2).to(fanPubSubType1Ex);
 		
-		Binding bindingT2Q1toType2Ex = BindingBuilder.bind(queuePubSubT2Q1).to(fanPubSubType2Ex);
-		Binding bindingT2Q2toType2Ex = BindingBuilder.bind(queuePubSubT2Q2).to(fanPubSubType2Ex);
-
-		Binding bindingType1ToMain = BindingBuilder.bind(fanPubSubType1Ex).to(mainPubSubEx)
+		//BIND type1 queues direct to main
+		Binding bindingT1Q1directToMain = BindingBuilder.bind(queuePubSubT1Q1).to(mainPubSubEx)
 				.with(RabbitInfo.PUB_SUB_TYPE1_ROUTING_KEY);
 
-		Binding bindingType2ToMain = BindingBuilder.bind(fanPubSubType2Ex).to(mainPubSubEx)
+		Binding bindingT1Q2directToMain = BindingBuilder.bind(queuePubSubT1Q2).to(mainPubSubEx)
+				.with(RabbitInfo.PUB_SUB_TYPE1_ROUTING_KEY);
+		
+		Binding bindingT1Q3directToMain = BindingBuilder.bind(queuePubSubT1Q3).to(mainPubSubEx)
+				.with(RabbitInfo.PUB_SUB_TYPE1_ROUTING_KEY);
+		
+		//BIND type2 queues direct to main
+		Binding bindingT2Q1directToMain = BindingBuilder.bind(queuePubSubT2Q1).to(mainPubSubEx)
 				.with(RabbitInfo.PUB_SUB_TYPE2_ROUTING_KEY);
 
-		amqpAdmin.declareBinding(bindingT1Q1toType1Ex);
-		amqpAdmin.declareBinding(bindingT1Q2toType1Ex);
+		Binding bindingT2Q2directToMain = BindingBuilder.bind(queuePubSubT2Q2).to(mainPubSubEx)
+				.with(RabbitInfo.PUB_SUB_TYPE2_ROUTING_KEY);
 		
-		amqpAdmin.declareBinding(bindingT2Q1toType2Ex);
-		amqpAdmin.declareBinding(bindingT2Q2toType2Ex);
+		//Q to topic direct binding
+		amqpAdmin.declareBinding(bindingT1Q1directToMain);
+		amqpAdmin.declareBinding(bindingT1Q2directToMain);
+		amqpAdmin.declareBinding(bindingT1Q3directToMain);
 		
-		amqpAdmin.declareBinding(bindingType1ToMain);
-		amqpAdmin.declareBinding(bindingType2ToMain);
+		amqpAdmin.declareBinding(bindingT2Q1directToMain);
+		amqpAdmin.declareBinding(bindingT2Q2directToMain);
 	}
 
 }
