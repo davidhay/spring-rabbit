@@ -19,7 +19,7 @@ public class RabbitMessageToPubSubExchangeSender {
 
 	public void sendMessageToPubSubExchange(String messageTypeAsRoutingKey, String message) {
 		try {
-			final Message msg = msgUtils.getSimpleMessage(message,Optional.empty());
+			final Message msg = msgUtils.getPlainTextMessage(message,Optional.empty());
 			rabbitTemplate.send(RabbitInfo.PUB_SUB_MAIN_EX, messageTypeAsRoutingKey, msg);
 		} catch (AmqpException ex) {
 			ex.printStackTrace();

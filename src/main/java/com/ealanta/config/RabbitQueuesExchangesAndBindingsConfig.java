@@ -41,7 +41,6 @@ public class RabbitQueuesExchangesAndBindingsConfig {
 		this.amqpAdmin = amqpAdmin;
 	}
 
-
 	@PostConstruct
 	public void createQueues() {
 
@@ -50,12 +49,16 @@ public class RabbitQueuesExchangesAndBindingsConfig {
 		Queue queue3 = new Queue(QUEUE_TEST_3, true);
 		Queue queueCustomer = new Queue(QUEUE_CUSTOMERS, true);
 		Queue queueValidated = new Queue(QUEUE_VALIDATED, true);
+		Queue queueEsrPos = new Queue(QUEUE_ESR_POS, true);
+		Queue queueEsrPor = new Queue(QUEUE_ESR_POR, true);
 
 		amqpAdmin.declareQueue(queue1);
 		amqpAdmin.declareQueue(queue2);
 		amqpAdmin.declareQueue(queue3);
 		amqpAdmin.declareQueue(queueCustomer);
 		amqpAdmin.declareQueue(queueValidated);
+		amqpAdmin.declareQueue(queueEsrPos);
+		amqpAdmin.declareQueue(queueEsrPor);
 		
 		Map<String,List<String>> queueNamesPerMessageType = new HashMap<>();
 		

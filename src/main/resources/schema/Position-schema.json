@@ -1,0 +1,72 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"minProperties": 1,
+	"properties": {
+		"positionID": {
+			"type": "integer",
+			"minLength": 1,
+			"maxLength": 15
+		},
+		"changeDeleteIndicator": {
+			"type": "string",
+			"enum": [
+				"C",
+				"D"
+			]
+		},
+		"positionNumber": {
+			"type": "integer",
+			"maxLength": 10
+		},
+		"positionTitle": {
+			"type": "string",
+			"maxLength": 60
+		},
+		"occupationCode": {
+			"type": "string",
+			"maxLength": 5
+		},
+		"areaOfWork": {
+			"type": "string",
+			"maxLength": 50
+		},
+		"secondSpeciality": {
+			"type": "string",
+			"maxLength": 5
+		},
+		"deaneryNumber": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 30
+		},
+		"managingOffice": {
+			"type": "string",
+			"maxLength": 10
+		},
+		"odsCode": {
+			"type": "string",
+			"maxLength": 30
+		},
+		"gradeTrust": {
+			"type": "string",
+			"maxLength": 3
+		},
+		"gradePayscale": {
+			"type": "string",
+			"maxLength": 10
+		},
+		"gradeDesc": {
+			"type": "string",
+			"maxLength": 60
+		},
+		"workplaceOrg": {
+			"type": "string",
+			"maxLength": 30
+		}
+	},
+	"required": [
+		"positionID",
+		"deaneryNumber"
+	]
+}

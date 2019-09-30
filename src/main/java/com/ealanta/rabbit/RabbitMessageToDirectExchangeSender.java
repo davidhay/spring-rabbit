@@ -20,9 +20,18 @@ public class RabbitMessageToDirectExchangeSender {
 	@Autowired
 	private MessageUtils msgUtils;
 
-	public void sendMessageToDirectExchange(String routingKeyAsQueueName, String message, Optional<String> correlationId) {
+	public void sendPlainTextMessageToDirectExchange(String routingKeyAsQueueName, String message, Optional<String> correlationId) {
 		try {
-			final Message msg = msgUtils.getSimpleMessage(message,correlationId);
+			final Message msg = msgUtils.getPlainTextMessage(message,correlationId);
+			rabbitTemplate.send(routingKeyAsQueueName, msg);
+		} catch (AmqpException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public void sendJsonMessageToDirectExchange(String type, String routingKeyAsQueueName, String message, Optional<String> correlationId) {
+		try {
+			final Message msg = msgUtils.getJsonMessage(message, type, correlationId);
 			rabbitTemplate.send(routingKeyAsQueueName, msg);
 		} catch (AmqpException ex) {
 			ex.printStackTrace();

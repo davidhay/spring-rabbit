@@ -1,0 +1,64 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"minProperties": 1,
+	"properties": {
+		"positionID": {
+			"type": "integer",
+			"minLength": 1,
+			"maxLength": 15
+		},
+		"changeDeleteIndicator": {
+			"type": "string",
+			"enum": [
+				"C",
+				"D"
+			]
+		},
+		"positionNumber": {
+			"type": "integer",
+			"maxLength": 10
+		},
+		"positionTitle": {
+			"type": "string",
+			"maxLength": 60
+		},
+		"deaneryNumber": {
+			"type": "string",
+			"minLength": 1,
+			"maxLength": 30
+		},
+		"managingOffice": {
+			"type": "string",
+			"maxLength": 10
+		},
+		"odsCode": {
+			"type": "string",
+			"maxLength": 30
+		},
+		"hostLeadIndicator": {
+			"type": "string",
+			"enum": [
+				"Host Employer",
+				"Lead Employer"
+			]
+		},
+		"employingOrgVPDCode": {
+			"type": "integer",
+			"maxLength": 4
+		},
+		"esrOrganisation": {
+			"type": "string",
+			"maxLength": 240
+		},
+		"esrLocation": {
+			"type": "string",
+			"maxLength": 240
+		}
+	},
+	"required": [
+		"positionID",
+		"deaneryNumber"
+	]
+}
+

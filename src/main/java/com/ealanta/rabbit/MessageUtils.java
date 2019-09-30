@@ -13,7 +13,7 @@ public class MessageUtils {
 	
 	public static final String HDR_APPLICATION_NAME = "applicationName";
 	
-	public Message getSimpleMessage(String message, Optional<String> correlationid) {
+	public Message getPlainTextMessage(String message, Optional<String> correlationid) {
 		byte[] data = message.getBytes(StandardCharsets.UTF_8);		
 		MessageProperties properties = new MessageProperties();
 		properties.setContentType(MediaType.TEXT_PLAIN_VALUE);
@@ -21,6 +21,17 @@ public class MessageUtils {
 			properties.setCorrelationId(corrid);
 		});
 		properties.setContentLength(2112);//seems to be ignored.
+		return new Message(data, properties);
+	}
+	
+	public Message getJsonMessage(String message, String type, Optional<String> correlationid) {
+		byte[] data = message.getBytes(StandardCharsets.UTF_8);		
+		MessageProperties properties = new MessageProperties();
+		properties.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		properties.setType(type);
+		correlationid.ifPresent( corrid -> {
+			properties.setCorrelationId(corrid);
+		});
 		return new Message(data, properties);
 	}
 	

@@ -42,7 +42,7 @@ public class DirectMessageSendingEndpoint {
 			} else {
 				optCorrId = Optional.empty();
 			}
-			sender.sendMessageToDirectExchange(queueName, msg, optCorrId);
+			sender.sendPlainTextMessageToDirectExchange(queueName, msg, optCorrId);
 			result = ResponseEntity.accepted().body(
 					String.format("Sent Message[%s] to q[%s]", msg, queueName));
 		} else {

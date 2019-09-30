@@ -1,0 +1,13 @@
+{
+	"positionID": 123456789123456,
+	"changeDeleteIndicator": "D",
+	"positionNumber": 1234567890,
+	"positionTitle": "test",
+	"deaneryNumber": "NTH/RTFED/040/STR/210",
+	"managingOffice": "Northern",
+	"odsCode": "CodingCode",
+	"hostLeadIndicator": "Host Employer",
+	"employingOrgVPDCode": 234,
+	"esrOrganisation": "Happy Org",
+	"esrLocation": "there"
+}
