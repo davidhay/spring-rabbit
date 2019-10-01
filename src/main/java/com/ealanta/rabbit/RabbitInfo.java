@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class RabbitInfo {
 
-	public static final String PUB_SUB_MAIN_EX = "main";
+	public static final String PUB_SUB_MAIN_EX = "mainPubSubEx";
 	public static final String PUB_SUB_TYPE1_ROUTING_KEY = "type1";
 	public static final String PUB_SUB_TYPE2_ROUTING_KEY = "type2";
 	public static final String PUB_SUB_ALL_ROUTING_KEY = "#";
@@ -24,7 +24,7 @@ public class RabbitInfo {
 
 	public static final String QUEUE_PUBSUB_TYPE2Q1 = "type2queue1";
 	public static final String QUEUE_PUBSUB_TYPE2Q2 = "type2queue2";
-	public static final String QUEUE_PUBSUB_ALL = "#";
+	public static final String QUEUE_PUBSUB_ALL = "typeAnyQueue1";
 	
 	public static final List<String> QUEUE_NAMES = Arrays.asList(
 			QUEUE_TEST_1, QUEUE_TEST_2, QUEUE_TEST_3, QUEUE_CUSTOMERS, QUEUE_VALIDATED, QUEUE_ESR_POR, QUEUE_ESR_POS,
